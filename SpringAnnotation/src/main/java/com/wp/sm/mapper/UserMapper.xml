@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test">
+    <insert id="insertUser" parameterType="com.wp.sm.beans.User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into student (name, create_at, update_at, qq, job, arrive_time, school, student_id, link, wish,
+                             known_ways, bro)
+        values (#{name}, #{create_at}, #{update_at}, #{qq}, #{job}, #{arrive_time}, #{school},
+                #{student_id}, #{link}, #{wish}, #{known_ways}, #{bro})
+    </insert>
+
+    <update id="updateUser" parameterType="com.wp.sm.beans.User">
+        update student
+        set name        = #{name},
+            create_at   = #{create_at},
+            update_at   = #{update_at},
+            qq          = #{qq},
+            job         = #{job},
+            arrive_time = #{arrive_time},
+            school      = #{school},
+            student_id  = #{student_id},
+            link        = #{link},
+            wish        = #{wish},
+            known_ways  = #{known_ways},
+            bro         = #{bro}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete
+        from student
+        where id = #{id}
+    </delete>
+
+    <select id="selectUserById" parameterType="int" resultType="com.wp.sm.beans.User">
+        select *
+        from student
+        where id = #{id}
+    </select>
+
+    <select id="selectAllUser" parameterType="com.wp.sm.beans.User" resultType="com.wp.sm.beans.User">
+        select *
+        from student
+    </select>
+
+    <select id="selectUserByName" parameterType="com.wp.sm.beans.User" resultType="java.lang.String">
+        select link
+        from student
+        where student_id = #{student_id}
+          and name = #{name}
+    </select>
+
+</mapper>
